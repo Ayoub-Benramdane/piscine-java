@@ -3,6 +3,7 @@ import java.util.List;
 
 public class CleanExtract {
     public static String extract(String s) {
+        System.out.println(s);
         if (s == null || s == "")
             return "";
         String[] words = s.split(" ");
