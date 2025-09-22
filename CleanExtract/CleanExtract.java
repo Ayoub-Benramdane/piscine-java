@@ -10,7 +10,7 @@ public class CleanExtract {
         boolean in = false;
         boolean no9ta = false;
         int count = 0;
-        if (s.endsWith(".")) {
+        if (s.trim().endsWith(".")) {
             no9ta = true;
         }
         for (String word : words) {
