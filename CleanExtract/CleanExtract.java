@@ -30,7 +30,7 @@ public class CleanExtract {
         }
         String last = String.join(" ", res);
         if (last.contains(".")) {
-            return last;
+            return last.trim();
         } else if (last == "" || last == null) {
             return "";
         }
