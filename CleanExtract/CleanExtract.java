@@ -10,6 +10,7 @@ public class CleanExtract {
         List<String> res = new ArrayList<>();
         boolean in = false;
         boolean no9ta = false;
+        boolean hrf = false;
         int count = 0;
         if (s.trim().endsWith(".")) {
             no9ta = true;
@@ -18,6 +19,9 @@ public class CleanExtract {
             count++;
             if (word == "") {
                 continue;
+            }
+            if (!word.contains("|") && !word.contains(".")) {
+                hrf = true;
             }
             if (word.contains("|")) {
                 in = true;
@@ -36,6 +40,7 @@ public class CleanExtract {
                 }
             }
         }
+        if (!hrf) return "";
         String last = String.join(" ", res);
         if (last.contains(".")) {
             return last.trim();
