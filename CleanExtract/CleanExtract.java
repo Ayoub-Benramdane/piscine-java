@@ -3,11 +3,16 @@ import java.util.List;
 
 public class CleanExtract {
     public static String extract(String s) {
-        if (s == null || s == "") return "";
+        if (s == null || s == "")
+            return "";
         String[] words = s.split(" ");
         List<String> res = new ArrayList<>();
         boolean in = false;
+        boolean no9ta = false;
         int count = 0;
+        if (s.endsWith(".")) {
+            no9ta = true;
+        }
         for (String word : words) {
             count++;
             if (word == "") {
@@ -36,6 +41,9 @@ public class CleanExtract {
         } else if (last == "" || last == null) {
             return "";
         }
-        return last.trim() + " .";
+        if (no9ta) {
+            return last.trim() + " .";
+        }
+        return last.trim();
     }
 }
