@@ -22,8 +22,10 @@ public class CleanExtract {
             if (!in) {
                 String newWord = word.replace("|", "");
                 if (count != words.length - 1) {
-                    res.add(newWord.replace(".", ""));
-                } else {
+                    if (newWord.replace(".", "") != "") {
+                        res.add(newWord.replace(".", ""));
+                    }
+                } else if (newWord != "") {
                     res.add(newWord);
                 }
             }
