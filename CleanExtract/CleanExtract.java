@@ -31,7 +31,7 @@ public class CleanExtract {
         String last = String.join(" ", res);
         if (last.contains(".")) {
             return last;
-        } else if (last == "") {
+        } else if (last == null) {
             return "";
         }
         return last.trim() + " .";
