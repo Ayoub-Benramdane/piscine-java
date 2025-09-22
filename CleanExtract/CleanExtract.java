@@ -6,7 +6,9 @@ public class CleanExtract {
         String[] words = s.split(" ");
         List<String> res = new ArrayList<>();
         boolean in = false;
+        int count = 0;
         for (String word : words) {
+            count++;
             if (word == "") {
                 continue;
             }
@@ -18,10 +20,17 @@ public class CleanExtract {
             }
             if (!in) {
                 String newWord = word.replace("|", "");
-                if (newWord.replace(".", "") == "") continue;
-                res.add(newWord.replace(".", ""));
+                if (count != words.length - 1) {
+                    res.add(newWord.replace(".", ""));
+                } else {
+                    res.add(newWord);
+                }
             }
         }
-        return String.join(" ", res);
+        String last = String.join(" ", res);
+        if (last.contains(".")) {
+            return last;
+        }
+        return last.trim() + " .";
     }
 }
