@@ -3,7 +3,7 @@ import java.util.List;
 
 public class CleanExtract {
     public static String extract(String s) {
-        if (s == null) return "";
+        if (s == null || s == "") return "";
         String[] words = s.split(" ");
         List<String> res = new ArrayList<>();
         boolean in = false;
@@ -31,7 +31,7 @@ public class CleanExtract {
         String last = String.join(" ", res);
         if (last.contains(".")) {
             return last;
-        } else if (last == null) {
+        } else if (last == "" || last == null) {
             return "";
         }
         return last.trim() + " .";
