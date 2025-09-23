@@ -19,7 +19,7 @@ public class DoOp {
                     return "Error";
                 return Integer.toString(Integer.parseInt(args[0]) % Integer.parseInt(args[2]));
             default:
-                return "";
+                return "Error";
         }
     }
 }
