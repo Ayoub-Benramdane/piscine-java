@@ -4,22 +4,12 @@ public class DoOp {
             return "Error";
         }
         switch (args[1]) {
-            case "+":
-                return Integer.toString(Integer.parseInt(args[0]) + Integer.parseInt(args[2]));
-            case "-":
-                return Integer.toString(Integer.parseInt(args[0]) - Integer.parseInt(args[2]));
-            case "*":
-                return Integer.toString(Integer.parseInt(args[0]) * Integer.parseInt(args[2]));
-            case "/":
-                if (Integer.parseInt(args[2]) == 0)
-                    return "Error";
-                return Integer.toString(Integer.parseInt(args[0]) / Integer.parseInt(args[2]));
-            case "%":
-                if (Integer.parseInt(args[2]) == 0)
-                    return "Error";
-                return Integer.toString(Integer.parseInt(args[0]) % Integer.parseInt(args[2]));
-            default:
-                return "Error";
+            case "+":return Integer.toString(Integer.parseInt(args[0]) + Integer.parseInt(args[2]));
+            case "-":return Integer.toString(Integer.parseInt(args[0]) - Integer.parseInt(args[2]));
+            case "*":return Integer.toString(Integer.parseInt(args[0]) * Integer.parseInt(args[2]));
+            case "/":if (Integer.parseInt(args[2]) == 0)return "Error"; return Integer.toString(Integer.parseInt(args[0]) / Integer.parseInt(args[2]));
+            case "%":if (Integer.parseInt(args[2]) == 0)return "Error"; return Integer.toString(Integer.parseInt(args[0]) % Integer.parseInt(args[2]));
+            default:return "Error";
         }
     }
 }
