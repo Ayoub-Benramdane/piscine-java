@@ -20,7 +20,7 @@ public class Capitalize {
             outputStream.write(String.join(" ", res).getBytes());
             inputStream.close();
             outputStream.close();
-            System.out.println(String.join(" ", res));
+            System.out.println(String.join(" ", res)+"\n");
         }
     }
 }
