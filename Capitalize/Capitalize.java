@@ -14,12 +14,13 @@ public class Capitalize {
                 var words = line.split(" ");
                 for (String word : words) {
                     if (word.length() > 0)
-                    res.add(word.substring(0, 1).toUpperCase() + word.substring(1));
+                        res.add(word.substring(0, 1).toUpperCase() + word.substring(1));
                 }
             }
             outputStream.write(String.join(" ", res).getBytes());
             inputStream.close();
             outputStream.close();
+            System.out.println(String.join(" ", res));
         }
     }
 }
