@@ -2,6 +2,7 @@ import java.io.File;
 
 public class FileSearch {
     public static String searchFile(String fileName) {
+        System.out.println("klj");
         File dir = new File("doucuments");
         File[] files = dir.listFiles();
         if (files != null) {
