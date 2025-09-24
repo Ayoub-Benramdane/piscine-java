@@ -17,7 +17,7 @@ public class Capitalize {
                         res.add(word.substring(0, 1).toUpperCase() + word.substring(1));
                 }
             }
-            outputStream.write((String.join(" ", res)+"\n").getBytes());
+            outputStream.write((String.join(" ", res)).getBytes());
             inputStream.close();
             outputStream.close();
         }
