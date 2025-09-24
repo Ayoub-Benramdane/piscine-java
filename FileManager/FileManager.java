@@ -3,7 +3,6 @@ import java.io.*;
 public class FileManager {
     public static void createFile(String fileName, String content) throws IOException {
         new FileWriter(fileName).write(content);
-        new FileWriter(fileName).close();
     }
 
     public static String getContentFile(String fileName) throws IOException {
