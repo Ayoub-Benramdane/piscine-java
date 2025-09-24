@@ -5,7 +5,9 @@ public class FileSearch {
         System.out.println("klj");
         File dir = new File("doucuments");
         File[] files = dir.listFiles();
+        System.out.println("kljaa");
         if (files != null) {
+            System.out.println("kaaalj");
             for (File file : files) {
                 if (file.isDirectory()) {
                     String result = searchFile(fileName);
