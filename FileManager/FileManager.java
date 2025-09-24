@@ -2,7 +2,9 @@ import java.io.*;
 
 public class FileManager {
     public static void createFile(String fileName, String content) throws IOException {
-        new FileWriter(fileName).write(content);
+         FileWriter writer = new FileWriter(fileName);
+        writer.write(content);
+        writer.close();
     }
 
     public static String getContentFile(String fileName) throws IOException {
