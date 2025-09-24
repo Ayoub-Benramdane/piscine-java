@@ -7,6 +7,9 @@ public class FileManager {
     }
 
     public static String getContentFile(String fileName) throws IOException {
+        if (fileName == null) {
+            return "";
+        }
         InputStream inputStream = new FileInputStream(fileName);
         byte[] buffer = new byte[4096];
         StringBuilder res = new StringBuilder();
