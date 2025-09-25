@@ -3,7 +3,8 @@ public class CelestialObject {
     public double x;
     public double y;
     public double z;
-
+    public double KM_IN_ONE_AU = 150000000;
+    
     public CelestialObject() {
         this.name = "Soleil";
         this.x = 0.0;
@@ -58,7 +59,6 @@ public class CelestialObject {
     }
 
     public static double getDistanceBetweenInKm(CelestialObject obj1, CelestialObject obj2) {
-        double KM_IN_ONE_AU = 150000000;
         return getDistanceBetween(obj1, obj2) * KM_IN_ONE_AU;
     }
 }
