@@ -1,6 +1,5 @@
 import java.util.*;
 
-
 public class Galaxy  {
     private List<CelestialObject>  celestialObjects;
     public Galaxy(){
