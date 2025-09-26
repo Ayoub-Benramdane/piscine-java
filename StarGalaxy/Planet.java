@@ -1,22 +1,23 @@
-
+// package StarMass;
 
 import java.util.Objects;
 
 public class Planet extends CelestialObject {
-    private Star centerStar;
 
-    public Planet() {
-        super();
-        this.centerStar = new Star();
-    }
+    private Star centerStar;
 
     public Planet(String name, double x, double y, double z, Star centerStar, int mass) {
         super(name, x, y, z, mass);
         this.centerStar = centerStar;
     }
 
+    public Planet() {
+        super();
+        this.centerStar = new Star();
+    }
+
     public Star getCenterStar() {
-        return centerStar;
+        return this.centerStar;
     }
 
     public void setCenterStar(Star centerStar) {
@@ -25,23 +26,32 @@ public class Planet extends CelestialObject {
 
     @Override
     public String toString() {
-        double dis = CelestialObject.getDistanceBetween(this, centerStar);
-        return String.format("%s circles around %s at the %.3f AU", getName(), centerStar.getName(), dis);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null || getClass() != obj.getClass())
-            return false;
-
-        Planet other = (Planet) obj;
-        return super.equals(other) && Objects.equals(centerStar, other.centerStar);
+        return String.format("%s circles around %s at the %.3f AU",
+                this.name,
+                this.centerStar.name,
+                CelestialObject.getDistanceBetween(this, this.centerStar)
+        );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), centerStar);
+        return Objects.hash(this.name, this.x, this.y, this.z, this.centerStar);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Planet other = (Planet) obj;
+        return this.name.equals(other.getName())
+                && this.x == other.getX()
+                && this.y == other.getY()
+                && this.z == other.getZ()
+                && this.centerStar.equals(other.getCenterStar());
+    }
+
 }
