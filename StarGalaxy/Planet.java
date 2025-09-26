@@ -1,3 +1,5 @@
+
+
 import java.util.Objects;
 
 public class Planet extends CelestialObject {
@@ -23,21 +25,19 @@ public class Planet extends CelestialObject {
 
     @Override
     public String toString() {
-        return "%s circles around %s at the %.3f AU".formatted(getName(), centerStar.getName(),
-                CelestialObject.getDistanceBetween(this, centerStar));
+        double dis = CelestialObject.getDistanceBetween(this, centerStar);
+        return String.format("%s circles around %s at the %.3f AU", getName(), centerStar.getName(), dis);
     }
 
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (!(obj instanceof Planet))
-            return false;
-        if (!super.equals(obj))
+        if (obj == null || getClass() != obj.getClass())
             return false;
 
         Planet other = (Planet) obj;
-        return Objects.equals(centerStar, other.centerStar);
+        return super.equals(other) && Objects.equals(centerStar, other.centerStar);
     }
 
     @Override
