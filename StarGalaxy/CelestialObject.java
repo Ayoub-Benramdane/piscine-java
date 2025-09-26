@@ -17,6 +17,7 @@ public class CelestialObject {
         y = 0.0;
         z = 0.0;
         name = "Soleil";
+        mass = 0;
     }
 
     public CelestialObject(String name, double x, double y, double z, int mass) {
@@ -59,8 +60,7 @@ public class CelestialObject {
         this.name = name;
     }
 
-    public int getMass() {
-        // System.out.print(this.mass);
+    public int getMass() {  
         return mass;
     }
 
