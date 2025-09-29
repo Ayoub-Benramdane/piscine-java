@@ -1,10 +1,11 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Character {
     private final int maxHealth;
     private int currentHealth;
     private final String name;
-    private static ArrayList<Character> allCharacters = new ArrayList<>();
+    private static List<Character> allCharacters = new ArrayList<>();
 
     public Character(String name, int maxHealth) {
         this.currentHealth = maxHealth;
