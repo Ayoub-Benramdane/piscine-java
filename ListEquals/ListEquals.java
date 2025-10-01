@@ -6,6 +6,8 @@ public class ListEquals {
         System.out.println(list2);
         if (list1 == null || list2 == null) {
             return false;
+        } else if (list1 == null && list2 == null) {
+            return true;
         }
         return list1.equals(list2);
     }
