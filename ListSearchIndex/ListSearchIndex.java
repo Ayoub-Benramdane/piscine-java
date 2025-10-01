@@ -15,12 +15,13 @@ public class ListSearchIndex {
         System.out.println(value);
         if (list == null) return null;
         List<Integer> indexes = new ArrayList<>();
-
+        
         for (int i = 0; i < list.size(); i++) {
             if (value.equals(list.get(i))) {
                 indexes.add(i);
             }
         }
+        System.out.println(indexes);
 
         return indexes;
     }
