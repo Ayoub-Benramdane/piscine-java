@@ -1,78 +1,87 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Character {
+public abstract class Character {
+
+    private static List<Character> allCharacters = new ArrayList<>();
+
     private final int maxHealth;
     private int currentHealth;
+
     private final String name;
-    private static List<Character> allCharacters = new ArrayList<>();
 
     public Character(String name, int maxHealth) {
         this.name = name;
         this.maxHealth = maxHealth;
         this.currentHealth = maxHealth;
-        allCharacters.add(this);
-    }
-
-    public int getCurrentHealth() {
-        return currentHealth;
-    }
-
-    public void setCurrentHealth(int currentHealth) {
-        this.currentHealth = currentHealth;
+        Character.allCharacters.add(this);
     }
 
     public int getMaxHealth() {
         return maxHealth;
     }
 
+    public int getCurrentHealth() {
+        return currentHealth;
+    }
+
+    protected void setCurrentHealth(int currentHealth) {
+        this.currentHealth = currentHealth;
+    }
+
     public String getName() {
         return name;
     }
 
+    public static String printStatus() {
+        StringBuilder status = new StringBuilder();
+
+        status.append("------------------------------------------\n");
+
+        if (allCharacters.isEmpty()) {
+            status.append("Nobody's fighting right now !\n");
+        } else {
+            status.append("Characters currently fighting :\n");
+            for (Character character : allCharacters) {
+                status.append(String.format(" - %s\n", character.toString()));
+            }
+        }
+
+        status.append("------------------------------------------\n");
+
+        return status.toString();
+    }
+
+    public static Character fight(Character ch1, Character ch2) {
+        Character winner = null;
+
+        while (ch1.currentHealth != 0 && ch2.currentHealth != 0) {
+            ch1.attack(ch2);
+            if (ch2.currentHealth == 0) {
+                winner = ch1;
+                break;
+            }
+
+            ch2.attack(ch1);
+            if (ch1.currentHealth == 0) {
+                winner = ch2;
+                break;
+            }
+        }
+
+        return winner;
+    }
+
+    @Override
     public String toString() {
         if (this.currentHealth > 0) {
-            return this.name + " : " + this.currentHealth + "/" + this.maxHealth;
-        }
-        return name + " : KO";
-    }
-
-    public void takeDamage(int cur) {
-        if (this.currentHealth >= cur * 0.8) {
-            this.currentHealth = this.currentHealth - (int) Math.floor(cur * 0.8);
+            return String.format("%s : %d/%d", this.name, this.currentHealth, this.maxHealth);
         } else {
-            this.currentHealth = 0;
+            return String.format("%s : KO", this.name);
         }
     }
 
-    public void attack(Character obj) {
-        obj.takeDamage(7);
-    }
+    public abstract void takeDamage(int amount);
 
-    public static String printStatus() {
-        if (allCharacters.isEmpty()) {
-            return "------------------------------------------\n" +
-                    "Nobody's fighting right now !\n" +
-                    "------------------------------------------\n";
-        }
-        String res = "------------------------------------------\nCharacters currently fighting :\n";
-        for (Character item : allCharacters) {
-            res += " - " + item.toString() + "\n";
-        }
-        res += "------------------------------------------\n";
-        return res;
-    }
-
-    public static Character fight(Character p1, Character p2) {
-        while (true) {
-            p1.attack(p2);
-            if (p2.currentHealth == 0) {
-                return p1;
-            }
-            p2.attack(p1);
-            if (p1.currentHealth == 0) {
-                return p2;
-            }
-        }
-    }
+    public abstract void attack(Character character);
 }
