@@ -1,3 +1,5 @@
+// package Adventure;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +9,6 @@ public abstract class Character {
 
     private final int maxHealth;
     private int currentHealth;
-
     private final String name;
     private Weapon weapon;
 
