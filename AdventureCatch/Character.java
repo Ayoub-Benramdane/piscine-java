@@ -96,7 +96,7 @@ public abstract class Character {
         }
     }
 
-    public abstract void takeDamage(int amount);
+    public abstract void takeDamage(int amount) throws DeadCharacterException;
 
-    public abstract void attack(Character character);
+    public abstract void attack(Character character) throws DeadCharacterException;
 }

@@ -7,14 +7,19 @@ public class Monster extends Character {
     @Override
     public String toString() {
         if (this.getCurrentHealth() == 0) {
-            return String.format("%s is a monster and is dead", this.getName())+ " He has the weapon " + this.getWeapon().toString() + ".";
+            return String.format("%s is a monster and is dead", this.getName()) + " He has the weapon "
+                    + this.getWeapon().toString() + ".";
         } else {
-            return String.format("%s is a monster with %d HP", this.getName(), this.getCurrentHealth())+ " He has the weapon " + this.getWeapon().toString() + ".";
+            return String.format("%s is a monster with %d HP", this.getName(), this.getCurrentHealth())
+                    + " He has the weapon " + this.getWeapon().toString() + ".";
         }
     }
 
     @Override
-    public void attack(Character character) {
+    public void attack(Character character) throws DeadCharacterException {
+        if (this.getCurrentHealth() == 0) {
+            throw new DeadCharacterException(this);
+        }
         int damage = (this.getWeapon() != null)
                 ? this.getWeapon().getDamage()
                 : 7;
@@ -22,7 +27,10 @@ public class Monster extends Character {
     }
 
     @Override
-    public void takeDamage(int amount) {
+    public void takeDamage(int amount) throws DeadCharacterException {
+        if (this.getCurrentHealth() == 0) {
+            throw new DeadCharacterException(this);
+        }
         int effectiveDamage = (int) Math.floor(amount * 0.8);
 
         if (effectiveDamage >= this.getCurrentHealth()) {
