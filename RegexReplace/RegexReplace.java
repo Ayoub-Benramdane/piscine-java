@@ -1,54 +1,26 @@
-import java.util.regex.*;
-
 public class RegexReplace {
-
     public static String removeUnits(String s) {
-        return s.replaceAll("(\\d+)(cm|€)(?!\\s|\\w|²)", "$1")
-                .replaceAll("(\\d+)(cm|€)(?=\\s|$)", "$1");
+        return s.replaceAll("([0-9]+)(cm|€)(\s|$)", "$1$3");
     }
 
-    public static String obfuscateEmail(String s) {
-        Matcher m = Pattern.compile("([\\w._-]+)@([\\w.-]+)").matcher(s);
-        StringBuffer result = new StringBuffer();
+    public static String obfuscateEmail(String email) {
+        String emailPattern = "^([a-zA-Z0-9]+[._-]?)([a-zA-Z0-9]+)@([a-zA-Z]+)(\\.)(com|co|net|org)?(\\.)?(.*)?";
 
-        while (m.find()) {
-            String username = m.group(1);
-            String domain = m.group(2);
-            String newUser;
+        String usernamePrefix = email.replaceAll(emailPattern, "$1");
+        String usernameSuffix = email.replaceAll(emailPattern, "$2");
 
-            if (username.contains(".") || username.contains("-") || username.contains("_")) {
-                int firstSep = username.length();
-                for (char c : new char[]{'.', '-', '_'}) {
-                    int idx = username.indexOf(c);
-                    if (idx != -1 && idx < firstSep)
-                        firstSep = idx;
-                }
-                newUser = username.substring(0, firstSep + 1) + "*";
-            } else if (username.length() > 3) {
-                newUser = username.substring(0, 3) + "***";
-            } else {
-                newUser = username;
-            }
+        String domainName = email.replaceAll(emailPattern, "$3");
+        String firstDot = email.replaceAll(emailPattern, "$4");
+        String topLevelDomain = email.replaceAll(emailPattern, "$5");
 
-            String[] parts = domain.split("\\.");
-            String newDomain;
+        String secondDot = email.replaceAll(emailPattern, "$6");
+        String secondaryTLD = email.replaceAll(emailPattern, "$7");
 
-            if (parts.length == 3) { 
-                newDomain = "*******." + parts[1] + ".***";
-            } else if (parts.length == 2) {
-                if (parts[1].matches("com|org|net")) {
-                    newDomain = "*******." + parts[1];
-                } else {
-                    newDomain = "*******.**";
-                }
-            } else {
-                newDomain = "*******." + parts[parts.length - 1];
-            }
+        String obfuscatedUsernameSuffix = usernameSuffix.replaceAll(".", "*");
+        String obfuscatedDomainName = domainName.replaceAll(".", "*");
+        String obfuscatedSecondaryTLD = (secondaryTLD != null) ? secondaryTLD.replaceAll(".", "*") : "";
 
-            m.appendReplacement(result, newUser + "@" + newDomain);
-        }
-
-        m.appendTail(result);
-        return result.toString();
+        return usernamePrefix + obfuscatedUsernameSuffix + "@" + obfuscatedDomainName + firstDot + topLevelDomain +
+                (secondDot != null ? secondDot : "") + obfuscatedSecondaryTLD;
     }
 }
