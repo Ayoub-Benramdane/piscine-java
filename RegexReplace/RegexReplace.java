@@ -4,7 +4,7 @@ public class RegexReplace {
     }
 
     public static String obfuscateEmail(String email) {
-        String emailPattern = "^([a-zA-Z0-9]+[._-])([a-zA-Z0-9]+)@([a-zA-Z]+)(\\.)(com|co|net|org)?(\\.)?(.*)?";
+        String emailPattern = "^([a-zA-Z0-9]+[\\._-]|[a-zA-Z0-9]{3,3})([a-zA-Z0-9]+)@([a-zA-Z]+)(\\.)(com|co|net|org)?(\\.)?(.*)?";
 
         String usernamePrefix = email.replaceAll(emailPattern, "$1");
         String usernameSuffix = email.replaceAll(emailPattern, "$2");
